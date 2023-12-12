@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Streaming App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        #player-container {
+            text-align: center;
+        }
+
+        audio {
+            margin-top: 20px;
+            width: 300px;
+            outline: none;
+        }
+
+        .playlist {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .playlist-item {
+            padding: 10px;
+            cursor: pointer;
+            border-bottom: 1px solid #ddd;
+            transition: background-color 0.3s;
+        }
+
+        .playlist-item:hover {
+            background-color: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <div id="player-container">
+        <h1>Music Streaming App</h1>
+        <audio id="audio-player" controls>
+            Your browser does not support the audio element.
+        </audio>
+        <ul class="playlist" id="playlist">
+            <li class="playlist-item" data-src="Jamal.mp3">Song 1</li>
+            <li class="playlist-item" data-src="Ullu.mp3">Song 2</li>
+            <li class="playlist-item" data-src="Jagga.mp3">Song 3</li>
+        </ul>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const audioPlayer = document.getElementById('audio-player');
+            const playlist = document.getElementById('playlist');
+
+            // Function to play selected audio
+            function playAudio(src) {
+                audioPlayer.src = src;
+                audioPlayer.play();
+            }
+
+            // Add click event listener to each playlist item
+            const playlistItems = document.querySelectorAll('.playlist-item');
+            playlistItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    const audioSrc = this.getAttribute('data-src');
+                    playAudio(audioSrc);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
